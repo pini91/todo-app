@@ -239,3 +239,12 @@ a:hover {
     transform: translateY(-2px) scale(1.03);
 }
 
+.del{
+    color: rgb(143, 102, 102);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.del:hover {
+    color: #ff1a1a;
+}

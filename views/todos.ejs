@@ -4,11 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Todo App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- crossorigin provides support for CORS, defining how the element handles cross-origin requests, thereby enabling the configuration of the CORS requests for the element's fetched data. -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Todos</h1>
+    <div class="circle">
+        <span class="circle-logo">
+            <svg class="circle-container" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" ><!--xmlns="http://www.w3.org/2000/svg", attribute, when used within an <svg> element, declares the XML namespace for the SVG content. It tells the browser that elements within that svg element are to be interpreted as SVG elements. -->
+                <circle cx="16" cy="16" r="15" fill="rgb(242, 233, 228)" stroke="rgb(74, 78, 105)" stroke-width="2"/> <!--circle element in SVG uses the stroke attribute to define the color of its outline. Stroke controls the thickness of the outline around the circle-->
+                <!--The cy attribute, along with the cx (x-coordinate) and r (radius) attributes, are crucial for defining the size and position of a circle in SVG.-->
+                <circle cx="16" cy="16" r="4.5" fill="rgb(154, 140, 152)"/> 
+            </svg>
+        </span>
+        <span class="todoSpan">Todo <span class="todoSpanList">List</span></span>
+    </div>
     <ul>
     <% todos.forEach( el => { %>
             <li class='todoItem' data-id='<%=el._id%>'>
@@ -18,10 +30,9 @@
     <% }) %>    
     </ul>
 
-    <h2><%= user.userName %> has <%= left %> things left to do.</h2>
-
+    <h2><%= user.userName.charAt(0).toUpperCase()+user.userName.slice(1) %> has <%= left %> things left to do.</h2>
     <form action="/todos/createTodo" method='POST'>
-        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
+        <input type="text" placeholder="Enter a new todo..." name='todoItem' required maxlength="100">
         <input type="submit">
     </form>
 

@@ -1,3 +1,17 @@
+body {
+    background: linear-gradient(135deg, #f2e9e4 0%, #dececa 100%); 
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh; /*the element will have a minimum height equal to 100% of the viewport's height. 100vh is equivalent to the full height of the browser window or screen. */
+    color: #22223b;
+}
+.login{
+    display:flex; 
+    justify-content:center; 
+    gap:2rem; 
+    margin-top:2rem;
+}
+
 h1{
     color: #22223b;
     font-size: 2.5rem;
@@ -8,8 +22,220 @@ h1{
 }
 .completed{
     text-decoration: line-through;
-    color: gray;
+    color: #9a8c98;
+    opacity: 0.7;
 }
 .not{
-    text-decoration: underline;
+    text-decoration: none;
+    color: #22223b;
+    cursor: pointer;
+    transition: color 0.2s;
+
+.not:hover {
+    color: #4a4e69;
+}}
+
+.indexSpan {
+    color: #4a4e69;
+    font-weight: 600;
 }
+
+.indexH1 {
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.signupUserName{
+    padding:0.7rem 1rem;
+    border:1px solid #c9ada7;
+    border-radius:8px;
+    font-size:1rem;
+
+}
+
+.signupEmail{
+    padding:0.7rem 1rem;
+    border:1px solid #c9ada7;
+    border-radius:8px;
+    font-size:1rem;
+}
+
+.signupPassword{
+    padding:0.7rem 1rem;
+    border:1px solid #c9ada7;
+    border-radius:8px;
+    font-size:1rem;
+}
+
+.signupButton{
+   padding:0.7rem 1.5rem;
+   background:#4a4e69;
+   color:#fff;
+   border:none;
+   border-radius:8px;
+   font-size:1rem;
+   font-weight:600;
+   cursor:pointer;
+   transition:background 0.2s;
+}
+
+.signupForm {
+    max-width:400px;
+    margin:3rem auto 0 auto;
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+    background:#fff;
+    padding:2rem 2.5rem;
+    border-radius:16px;
+    box-shadow:0 4px 24px rgba(42,50,80,0.08); /*These represent the Red, Green, and Blue color values, respectively. This combination creates a dark blue/grey color. 0.08 means the shadow is almost completely transparent (8% opaque)*/
+}
+
+.alreadyAccount {
+    text-align:center;
+    margin-top:1.5rem;
+}
+
+.circle{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-top:2.5rem;
+    margin-bottom:1.5rem;
+    gap:1rem;
+}
+
+.circle-logo{
+    font-size:2.5rem;
+    line-height:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#fff;
+    border-radius:50%;
+    width:3.2rem;
+    height:3.2rem;
+    box-shadow:0 2px 12px rgba(74,78,105,0.08);
+    border:2px solid #c9ada7; /*This is a light brown color that complements the overall design*/
+}
+
+.circle-container {
+    display: block;
+    margin: auto;
+}  
+
+.todoSpan {
+    font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+    font-size: 2.3rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #22223b;
+} 
+
+.todoSpanList {
+    color: #4a4e69;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    max-width: 500px;
+    margin: 2rem auto 1rem auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(42, 50, 80, 0.08);
+    overflow: hidden;
+}
+
+.todoItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 1.1rem;
+    background: #fff;
+    transition: background 0.2s;
+}
+.todoItem:last-child {
+    border-bottom: none;
+}
+.todoItem:hover {
+    background: #f2e9e4;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #4a4e69;
+    margin-top: 0;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 2rem auto 0 auto;
+    max-width: 500px;
+}
+
+form input[type="text"] {
+    flex: 1;
+    padding: 0.7rem 1rem;
+    border: 1px solid #c9ada7;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    background: #f8f8fa;
+    transition: border 0.2s;
+}
+
+
+form input[type="text"]:focus {
+    border: 1.5px solid #4a4e69;
+}
+form input[type="submit"] { /*This part of the selector targets all HTML <input> elements that have a type attribute set to "submit". */
+    padding: 0.7rem 2.2rem;
+    background: linear-gradient(90deg, #4a4e69 60%, #8a7f88 100%);
+    color: #fff;
+    border: none;
+    border-radius: 32px;
+    font-size: 1.08rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 2px 12px rgba(74, 78, 105, 0.08);
+    letter-spacing: 0.5px;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+}
+
+form input[type="submit"]:hover {
+    background: linear-gradient(90deg, #22223b 60%, #4a4e69 100%);
+    box-shadow: 0 4px 24px rgba(74, 78, 105, 0.16);
+    transform: translateY(-2px) scale(1.03);
+}
+
+
+a {
+    display: inline-block;
+    text-align: center;
+    margin: 2rem 1rem 0 1rem;
+    color: #fff;
+    background: linear-gradient(90deg, #4a4e69 60%, #9a8c98 100%);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.7rem 2.2rem;
+    border-radius: 32px;
+    box-shadow: 0 2px 12px rgba(74, 78, 105, 0.08);
+    letter-spacing: 0.5px;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.1s, color 0.2s;
+}
+
+a:hover {
+    background: linear-gradient(90deg, #22223b 60%, #4a4e69 100%);
+    color: #fff;
+    box-shadow: 0 4px 24px rgba(74, 78, 105, 0.16);
+    transform: translateY(-2px) scale(1.03);
+}
+

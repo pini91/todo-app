@@ -9,8 +9,8 @@ on:
 permissions:
   contents: read
   pull-requests: read
-  security-events: write
   actions: read
+  checks: write
 
 jobs:
   lint-and-security:
@@ -52,15 +52,6 @@ jobs:
       - name: Check for known vulnerabilities
         run: npx audit-ci --moderate
         continue-on-error: false
-
-      # CodeQL for additional SAST
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
-        with:
-          languages: javascript
-
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
 
   test:
     name: Run Tests

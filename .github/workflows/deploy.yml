@@ -1,0 +1,76 @@
+name: Deploy to Railway
+
+on:
+  push:
+    branches: [main, develop]
+  workflow_run:
+    workflows: ['CI Pipeline']
+    types:
+      - completed
+    branches: [main, develop]
+
+env:
+  NODE_VERSION: '18'
+
+jobs:
+  deploy-dev:
+    name: Deploy to Development
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/develop' && github.event.workflow_run.conclusion == 'success'
+    environment: development
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to Railway (Dev)
+        uses: railwayapp/railway-deploy@v3
+        with:
+          railway_token: ${{ secrets.RAILWAY_TOKEN_DEV }}
+          railway_environment: development
+
+      - name: Post deployment notification
+        run: |
+          echo "✅ Successfully deployed to Development environment"
+          echo "🚀 Check your Railway dashboard for deployment details"
+
+  deploy-prod:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event.workflow_run.conclusion == 'success'
+    environment: production
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to Railway (Prod)
+        uses: railwayapp/railway-deploy@v3
+        with:
+          railway_token: ${{ secrets.RAILWAY_TOKEN_PROD }}
+          railway_environment: production
+
+      - name: Post deployment notification
+        run: |
+          echo "🚀 Successfully deployed to Production environment"
+          echo "📊 Check your Railway dashboard for deployment details"
+
+      - name: Create GitHub Release
+        if: github.ref == 'refs/heads/main'
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ github.run_number }}
+          release_name: Release v${{ github.run_number }}
+          body: |
+            🚀 Automated release from commit ${{ github.sha }}
+            
+            **Changes in this release:**
+            - See commit history for detailed changes
+            
+            **Deployment:**
+            - Successfully deployed to Production
+            - Check Railway dashboard for live URL
+          draft: false
+          prerelease: false

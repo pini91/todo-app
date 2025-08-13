@@ -16,6 +16,7 @@ required_files=(
     ".github/workflows/ci.yml"
     ".github/workflows/deploy.yml"
     ".eslintrc.json"
+    ".gitleaks.toml"
     "jest.config.js"
     "railway.json"
     ".env.example"

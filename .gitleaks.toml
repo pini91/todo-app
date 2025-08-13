@@ -1,0 +1,38 @@
+# GitLeaks configuration file
+title = "Todo App Secret Scanning"
+
+[extend]
+useDefault = true
+
+[[rules]]
+description = "AWS Access Key"
+id = "aws-access-key"
+regex = '''AKIA[0-9A-Z]{16}'''
+tags = ["key", "AWS"]
+
+[[rules]]
+description = "MongoDB Connection String"
+id = "mongodb-connection-string"
+regex = '''mongodb(\+srv)?://[^\s]*'''
+tags = ["key", "MongoDB"]
+
+[[rules]]
+description = "Generic API Key"
+id = "generic-api-key"
+regex = '''(?i)(api_key|apikey|api-key)[\s]*[:=][\s]*["\']?[a-z0-9]{16,}["\']?'''
+tags = ["key", "API"]
+
+[allowlist]
+description = "Allowlist"
+files = [
+    '''.env.example''',
+    '''CICD_SETUP.md''',
+    '''README.md''',
+]
+
+regexes = [
+    '''example\.com''',
+    '''your_.*_token''',
+    '''your-.*-token''',
+    '''username:password''',
+]

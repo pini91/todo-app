@@ -65,10 +65,10 @@ jobs:
           release_name: Release v${{ github.run_number }}
           body: |
             🚀 Automated release from commit ${{ github.sha }}
-            
+
             **Changes in this release:**
             - See commit history for detailed changes
-            
+
             **Deployment:**
             - Successfully deployed to Production
             - Check Railway dashboard for live URL

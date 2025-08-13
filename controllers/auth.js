@@ -7,21 +7,25 @@ exports.getLogin = (req, res) => {
     return res.redirect('/todos')
   }
   res.render('login', {
-    title: 'Login'
+    title: 'Login',
   })
 }
 
 exports.postLogin = (req, res, next) => {
   const validationErrors = []
-  if (!validator.isEmail(req.body.email)) { validationErrors.push({ msg: 'Please enter a valid email address.' }) }
-  if (validator.isEmpty(req.body.password)) { validationErrors.push({ msg: 'Password cannot be blank.' }) }
+  if (!validator.isEmail(req.body.email)) {
+    validationErrors.push({ msg: 'Please enter a valid email address.' })
+  }
+  if (validator.isEmpty(req.body.password)) {
+    validationErrors.push({ msg: 'Password cannot be blank.' })
+  }
 
   if (validationErrors.length) {
     req.flash('errors', validationErrors)
     return res.redirect('/login')
   }
   req.body.email = validator.normalizeEmail(req.body.email, {
-    gmail_remove_dots: false
+    gmail_remove_dots: false,
   })
 
   passport.authenticate('local', (err, user, info) => {
@@ -47,7 +51,9 @@ exports.logout = (req, res) => {
     console.log('User has logged out.')
   })
   req.session.destroy(err => {
-    if (err) { console.log('Error : Failed to destroy the session during logout.', err) }
+    if (err) {
+      console.log('Error : Failed to destroy the session during logout.', err)
+    }
     req.user = null
     res.redirect('/')
   })
@@ -58,33 +64,37 @@ exports.getSignup = (req, res) => {
     return res.redirect('/todos')
   }
   res.render('signup', {
-    title: 'Create Account'
+    title: 'Create Account',
   })
 }
 
 exports.postSignup = (req, res, next) => {
   const validationErrors = []
-  if (!validator.isEmail(req.body.email)) { validationErrors.push({ msg: 'Please enter a valid email address.' }) }
+  if (!validator.isEmail(req.body.email)) {
+    validationErrors.push({ msg: 'Please enter a valid email address.' })
+  }
   if (!validator.isLength(req.body.password, { min: 8 })) {
     validationErrors.push({
-      msg: 'Password must be at least 8 characters long'
+      msg: 'Password must be at least 8 characters long',
     })
   }
-  if (req.body.password !== req.body.confirmPassword) { validationErrors.push({ msg: 'Passwords do not match' }) }
+  if (req.body.password !== req.body.confirmPassword) {
+    validationErrors.push({ msg: 'Passwords do not match' })
+  }
 
   if (validationErrors.length) {
     req.flash('errors', validationErrors)
     return res.redirect('../signup')
   }
   req.body.email = validator.normalizeEmail(req.body.email, {
-    gmail_remove_dots: false
+    gmail_remove_dots: false,
   })
 
   const user = new User({
     // new user is our user model and save it in a variable user
     userName: req.body.userName, // and we grab this things from the form
     email: req.body.email,
-    password: req.body.password
+    password: req.body.password,
   })
 
   User.findOne(
@@ -92,8 +102,8 @@ exports.postSignup = (req, res, next) => {
       $or: [
         // checking if this user is already registrated
         { email: req.body.email },
-        { userName: req.body.userName }
-      ]
+        { userName: req.body.userName },
+      ],
     },
     (err, existingUser) => {
       // if theres an error throw that error
@@ -103,7 +113,7 @@ exports.postSignup = (req, res, next) => {
       if (existingUser) {
         // if the user exist redirect to the signup
         req.flash('errors', {
-          msg: 'Account with that email address or username already exists.'
+          msg: 'Account with that email address or username already exists.',
         })
         return res.redirect('../signup')
       }

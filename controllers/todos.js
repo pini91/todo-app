@@ -7,12 +7,12 @@ module.exports = {
       const todoItems = await Todo.find({ userId: req.user.id })
       const itemsLeft = await Todo.countDocuments({
         userId: req.user.id,
-        completed: false,
+        completed: false
       })
       res.render('todos.ejs', {
         todos: todoItems,
         left: itemsLeft,
-        user: req.user,
+        user: req.user
       })
     } catch (err) {
       console.log(err)
@@ -23,7 +23,7 @@ module.exports = {
       await Todo.create({
         todo: req.body.todoItem,
         completed: false,
-        userId: req.user.id,
+        userId: req.user.id
       })
       // console.log('Todo has been added!')
       res.redirect('/todos')
@@ -36,7 +36,7 @@ module.exports = {
       await Todo.findOneAndUpdate(
         { _id: req.body.todoIdFromJSFile },
         {
-          completed: true,
+          completed: true
         }
       )
       // console.log('Marked Complete')
@@ -50,7 +50,7 @@ module.exports = {
       await Todo.findOneAndUpdate(
         { _id: req.body.todoIdFromJSFile },
         {
-          completed: false,
+          completed: false
         }
       )
       // console.log('Marked Incomplete')
@@ -68,5 +68,5 @@ module.exports = {
     } catch (err) {
       console.log(err)
     }
-  },
+  }
 }

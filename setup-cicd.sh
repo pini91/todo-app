@@ -16,7 +16,6 @@ required_files=(
     ".github/workflows/ci.yml"
     ".github/workflows/deploy.yml"
     ".eslintrc.json"
-    ".prettierrc.json"
     "jest.config.js"
     "railway.json"
     ".env.example"
@@ -46,9 +45,6 @@ echo "🔍 Running initial checks..."
 
 echo "  → ESLint check..."
 npm run lint || echo "⚠️  Linting issues found - fix with 'npm run lint:fix'"
-
-echo "  → Prettier check..."
-npm run format:check || echo "⚠️  Formatting issues found - fix with 'npm run format'"
 
 echo "  → Running tests..."
 npm test || echo "⚠️  Tests failed - please review and fix"

@@ -14,15 +14,15 @@ Array.from(todoComplete).forEach(el => {
   el.addEventListener('click', markIncomplete)
 })
 
-async function deleteTodo() {
+async function deleteTodo () {
   const todoId = this.parentNode.dataset.id
   try {
     const response = await fetch('todos/deleteTodo', {
       method: 'delete',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify({
-        todoIdFromJSFile: todoId,
-      }),
+        todoIdFromJSFile: todoId
+      })
     })
     const data = await response.json()
     console.log(data)
@@ -32,15 +32,15 @@ async function deleteTodo() {
   }
 }
 
-async function markComplete() {
+async function markComplete () {
   const todoId = this.parentNode.dataset.id
   try {
     const response = await fetch('todos/markComplete', {
       method: 'put',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify({
-        todoIdFromJSFile: todoId,
-      }),
+        todoIdFromJSFile: todoId
+      })
     })
     const data = await response.json()
     console.log(data)
@@ -50,15 +50,15 @@ async function markComplete() {
   }
 }
 
-async function markIncomplete() {
+async function markIncomplete () {
   const todoId = this.parentNode.dataset.id
   try {
     const response = await fetch('todos/markIncomplete', {
       method: 'put',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify({
-        todoIdFromJSFile: todoId,
-      }),
+        todoIdFromJSFile: todoId
+      })
     })
     const data = await response.json()
     console.log(data)

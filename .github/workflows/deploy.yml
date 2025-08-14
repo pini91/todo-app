@@ -24,11 +24,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Deploy to Railway (Dev)
-        uses: railway/railway-action@v1
-        with:
-          command: deploy
+        uses: bervProject/railway-deploy@main
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_DEV }}
+        with:
+          service: "todo-app-dev"
 
       - name: Post deployment notification
         run: |
@@ -46,11 +46,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Deploy to Railway (Prod)
-        uses: railway/railway-action@v1
-        with:
-          command: deploy
+        uses: bervProject/railway-deploy@main
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_PROD }}
+        with:
+          service: "todo-app-prod"
 
       - name: Post deployment notification
         run: |

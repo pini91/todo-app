@@ -24,10 +24,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Deploy to Railway (Dev)
-        uses: railwayapp/railway-deploy@v3
+        uses: railway/railway-action@v1
         with:
-          railway_token: ${{ secrets.RAILWAY_TOKEN_DEV }}
-          railway_environment: development
+          command: deploy
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_DEV }}
 
       - name: Post deployment notification
         run: |
@@ -45,10 +46,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Deploy to Railway (Prod)
-        uses: railwayapp/railway-deploy@v3
+        uses: railway/railway-action@v1
         with:
-          railway_token: ${{ secrets.RAILWAY_TOKEN_PROD }}
-          railway_environment: production
+          command: deploy
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_PROD }}
 
       - name: Post deployment notification
         run: |
@@ -57,12 +59,10 @@ jobs:
 
       - name: Create GitHub Release
         if: github.ref == 'refs/heads/main'
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v1
         with:
           tag_name: v${{ github.run_number }}
-          release_name: Release v${{ github.run_number }}
+          name: Release v${{ github.run_number }}
           body: |
             🚀 Automated release from commit ${{ github.sha }}
 

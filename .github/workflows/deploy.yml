@@ -26,7 +26,6 @@ jobs:
       - name: Deploy to Railway (Dev)
         run: |
           npm install -g @railway/cli
-          railway login --token $RAILWAY_TOKEN
           railway status
           railway deploy --detach
         env:
@@ -57,7 +56,6 @@ jobs:
       - name: Deploy to Railway (Prod)
         run: |
           npm install -g @railway/cli
-          railway login --token $RAILWAY_TOKEN
           railway status
           railway deploy --detach
         env:

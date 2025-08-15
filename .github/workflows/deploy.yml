@@ -24,10 +24,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Deploy to Railway (Dev)
-        run: |
-          npm install -g @railway/cli
-          railway status
-          railway up --detach
+        uses: bervProject/railway-deploy@main
+        with:
+          service: "nodejs"
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_DEV }}
 
@@ -56,7 +55,7 @@ jobs:
       - name: Deploy to Railway (Prod)
         uses: bervProject/railway-deploy@main
         with:
-          service: "MongoDB"
+          service: "nodejs"
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_PROD }}
 

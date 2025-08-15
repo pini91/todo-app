@@ -38,6 +38,16 @@ app.use(passport.session())
 
 app.use(flash())
 
+// Health check endpoint for Railway
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'OK',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    environment: process.env.NODE_ENV || 'development'
+  })
+})
+
 app.use('/', mainRoutes)
 app.use('/todos', todoRoutes)
 

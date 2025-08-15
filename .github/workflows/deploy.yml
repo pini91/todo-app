@@ -27,8 +27,6 @@ jobs:
         uses: bervProject/railway-deploy@main
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_DEV }}
-        with:
-          service: "todo-app-dev"
 
       - name: Post deployment notification
         run: |
@@ -49,8 +47,6 @@ jobs:
         uses: bervProject/railway-deploy@main
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_PROD }}
-        with:
-          service: "todo-app-prod"
 
       - name: Post deployment notification
         run: |

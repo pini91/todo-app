@@ -68,7 +68,7 @@ exports.getSignup = (req, res) => {
   })
 }
 
-exports.postSignup = (req, res, next) => {
+exports.postSignup = async (req, res, next) => {
   const validationErrors = []
   if (!validator.isEmail(req.body.email)) {
     validationErrors.push({ msg: 'Please enter a valid email address.' })
@@ -97,38 +97,32 @@ exports.postSignup = (req, res, next) => {
     password: req.body.password
   })
 
-  User.findOne(
-    {
+  try {
+    const existingUser = await User.findOne({
       $or: [
         // checking if this user is already registrated
         { email: req.body.email },
         { userName: req.body.userName }
       ]
-    },
-    (err, existingUser) => {
-      // if theres an error throw that error
+    })
+
+    if (existingUser) {
+      // if the user exist redirect to the signup
+      req.flash('errors', {
+        msg: 'Account with that email address or username already exists.'
+      })
+      return res.redirect('../signup')
+    }
+
+    await user.save() // SAVING THE USER db
+
+    req.logIn(user, err => {
       if (err) {
         return next(err)
       }
-      if (existingUser) {
-        // if the user exist redirect to the signup
-        req.flash('errors', {
-          msg: 'Account with that email address or username already exists.'
-        })
-        return res.redirect('../signup')
-      }
-      user.save(err => {
-        // SAVING THE USER db
-        if (err) {
-          return next(err)
-        }
-        req.logIn(user, err => {
-          if (err) {
-            return next(err)
-          }
-          res.redirect('/todos')
-        })
-      })
-    }
-  )
+      res.redirect('/todos')
+    })
+  } catch (err) {
+    return next(err)
+  }
 }

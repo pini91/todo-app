@@ -27,7 +27,7 @@ jobs:
         run: |
           npm install -g @railway/cli
           railway status
-          railway deploy --detach
+          railway up --detach
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_DEV }}
 
@@ -57,7 +57,7 @@ jobs:
         run: |
           npm install -g @railway/cli
           railway status
-          railway deploy --detach
+          railway up --detach
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_PROD }}
 

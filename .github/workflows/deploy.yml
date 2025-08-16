@@ -12,6 +12,11 @@ concurrency:
   group: deploy-${{ github.ref }}
   cancel-in-progress: false
 
+permissions:
+  contents: write  # Required for creating releases
+  actions: read
+  checks: write
+
 env:
   NODE_VERSION: '18'
 
@@ -112,7 +117,7 @@ jobs:
 
       - name: Create GitHub Release
         if: github.ref == 'refs/heads/main'
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ github.run_number }}
           name: Release v${{ github.run_number }}
@@ -124,6 +129,9 @@ jobs:
 
             **Deployment:**
             - Successfully deployed to Production
-            - Check Railway dashboard for live URL
+            - Production URL: https://todo-app-prod1.up.railway.app/
+            - Health Check: https://todo-app-prod1.up.railway.app/health
           draft: false
           prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

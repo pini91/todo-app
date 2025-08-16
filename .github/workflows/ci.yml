@@ -7,9 +7,9 @@ on:
     branches: [main]
     types: [opened, synchronize, reopened]
 
-# Cancel in-progress runs for the same workflow on the same branch
+# Prevent duplicate runs: if both push and PR trigger, cancel the push run
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ci-${{ github.head_ref || github.ref }}
   cancel-in-progress: true
 
 permissions:

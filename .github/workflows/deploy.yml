@@ -24,7 +24,10 @@ jobs:
   deploy-dev:
     name: Deploy to Development
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/develop' && github.event.workflow_run.conclusion == 'success'
+    if: |
+      github.ref == 'refs/heads/develop' && 
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push'
     environment: development
 
     steps:
@@ -71,7 +74,10 @@ jobs:
   deploy-prod:
     name: Deploy to Production
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && github.event.workflow_run.conclusion == 'success'
+    if: |
+      github.ref == 'refs/heads/main' && 
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push'
     environment: production
 
     steps:

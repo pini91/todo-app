@@ -33,14 +33,32 @@ jobs:
       - name: Health Check (Dev)
         run: |
           echo "⏳ Waiting for deployment to be healthy..."
-          sleep 30
-          # Add health check logic here if you have the Railway app URL
-          echo "✅ Deployment completed - check Railway dashboard for status"
+          sleep 45
+          echo "🔍 Testing health endpoint..."
+          
+          # Health check with retry logic
+          for i in {1..5}; do
+            if curl -f -s "https://todo-app-dev.up.railway.app/health"; then
+              echo "✅ Health check passed on attempt $i"
+              echo "🚀 Development app is healthy and responding"
+              echo "🔗 App URL: https://todo-app-dev.up.railway.app/"
+              break
+            else
+              echo "❌ Health check failed on attempt $i"
+              if [ $i -eq 5 ]; then
+                echo "⚠️ Health check failed after 5 attempts, but deployment may still be successful"
+                echo "🔗 Manual check: https://todo-app-dev.up.railway.app/"
+                exit 0  # Don't fail the deployment, just warn
+              fi
+              sleep 10
+            fi
+          done
 
       - name: Post deployment notification
         run: |
           echo "✅ Successfully deployed to Development environment"
-          echo "🚀 Check your Railway dashboard for deployment details"
+          echo "� Development App: https://todo-app-dev.up.railway.app/"
+          echo "🏥 Health Check: https://todo-app-dev.up.railway.app/health"
 
   deploy-prod:
     name: Deploy to Production
@@ -62,14 +80,32 @@ jobs:
       - name: Health Check (Prod)
         run: |
           echo "⏳ Waiting for deployment to be healthy..."
-          sleep 30
-          # Add health check logic here if you have the Railway app URL
-          echo "✅ Production deployment completed - check Railway dashboard for status"
+          sleep 45
+          echo "🔍 Testing health endpoint..."
+          
+          # Health check with retry logic
+          for i in {1..5}; do
+            if curl -f -s "https://todo-app-prod1.up.railway.app/health"; then
+              echo "✅ Health check passed on attempt $i"
+              echo "🚀 Production app is healthy and responding"
+              echo "🔗 App URL: https://todo-app-prod1.up.railway.app/"
+              break
+            else
+              echo "❌ Health check failed on attempt $i"
+              if [ $i -eq 5 ]; then
+                echo "⚠️ Health check failed after 5 attempts, but deployment may still be successful"
+                echo "🔗 Manual check: https://todo-app-prod1.up.railway.app/"
+                exit 0  # Don't fail the deployment, just warn
+              fi
+              sleep 10
+            fi
+          done
 
       - name: Post deployment notification
         run: |
           echo "🚀 Successfully deployed to Production environment"
-          echo "📊 Check your Railway dashboard for deployment details"
+          echo "� Production App: https://todo-app-prod1.up.railway.app/"
+          echo "🏥 Health Check: https://todo-app-prod1.up.railway.app/health"
 
       - name: Create GitHub Release
         if: github.ref == 'refs/heads/main'

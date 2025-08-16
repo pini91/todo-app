@@ -22,11 +22,7 @@ jobs:
   lint-and-security:
     name: Lint & Security Checks
     runs-on: ubuntu-latest
-    # Run on PR events OR push events to main OR push to develop without open PR
-    if: >
-      github.event_name == 'pull_request' ||
-      github.ref == 'refs/heads/main' ||
-      (github.ref == 'refs/heads/develop' && github.event_name == 'push')
+    # Always run CI for code quality - let concurrency control handle duplicates
 
     steps:
       - name: Checkout code
@@ -68,11 +64,7 @@ jobs:
     name: Run Tests
     runs-on: ubuntu-latest
     needs: lint-and-security
-    # Run on PR events OR push events to main OR push to develop without open PR
-    if: >
-      github.event_name == 'pull_request' ||
-      github.ref == 'refs/heads/main' ||
-      (github.ref == 'refs/heads/develop' && github.event_name == 'push')
+    # Always run tests - let concurrency control handle duplicates
 
     steps:
       - name: Checkout code

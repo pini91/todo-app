@@ -2,10 +2,6 @@
 
 A modern, secure Node.js todo application with comprehensive CI/CD pipeline featuring automated testing, security scanning, and deployment to Railway.
 
-[![CI Pipeline](https://github.com/yourusername/todo-app/actions/workflows/ci.yml/badge.svg)](https://github.com/yourusername/todo-app/actions/workflows/ci.yml)
-[![Security Scan](https://github.com/yourusername/todo-app/actions/workflows/codeql.yml/badge.svg)](https://github.com/yourusername/todo-app/actions/workflows/codeql.yml)
-[![protected by gitleaks](https://img.shields.io/badge/protected%20by-gitleaks-blue)](https://github.com/zricethezav/gitleaks)
-
 ## Features
 
 - **Full CRUD Operations** - Create, read, update, and delete todos

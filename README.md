@@ -6,7 +6,7 @@ A modern, secure Node.js todo application with comprehensive CI/CD pipeline feat
 [![Security Scan](https://github.com/yourusername/todo-app/actions/workflows/codeql.yml/badge.svg)](https://github.com/yourusername/todo-app/actions/workflows/codeql.yml)
 [![protected by gitleaks](https://img.shields.io/badge/protected%20by-gitleaks-blue)](https://github.com/zricethezav/gitleaks)
 
-## 🚀 Features
+## Features
 
 - **Full CRUD Operations** - Create, read, update, and delete todos
 - **User Authentication** - Secure login/signup with Passport.js
@@ -14,24 +14,24 @@ A modern, secure Node.js todo application with comprehensive CI/CD pipeline feat
 - **Real-time Updates** - Dynamic todo management without page refreshes
 - **Secure by Design** - Input validation, session management, and security headers
 
-## 🏗️ CI/CD Pipeline
+## CI/CD Pipeline
 
 This project features a comprehensive CI/CD pipeline with:
 
-### 🔄 Continuous Integration
+### Continuous Integration
 - **Linting** - ESLint with Standard configuration
 - **Testing** - Jest test suite with coverage reporting
 - **Security Scanning** - Multi-layer security analysis:
-  - 🔍 **Secret Detection** - GitLeaks prevents credential leaks
-  - 🛡️ **SAST** - CodeQL static application security testing
-  - 📦 **SCA** - npm audit for dependency vulnerabilities
+  - **Secret Detection** - GitLeaks prevents credential leaks
+  - **SAST** - CodeQL static application security testing
+  - **SCA** - npm audit for dependency vulnerabilities
 
-### 🚢 Continuous Deployment
+### Continuous Deployment
 - **Development** - Auto-deploy to Railway dev environment from `develop` branch
 - **Production** - Auto-deploy to Railway prod environment from `main` branch
 - **Environment Management** - Separate configs for dev/prod environments
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB with Mongoose
@@ -43,69 +43,14 @@ This project features a comprehensive CI/CD pipeline with:
 - **Deployment**: Railway
 - **Security**: GitLeaks, CodeQL, npm audit
 
-## 📋 Prerequisites
+## Prerequisites
 
 - Node.js (v18 or higher)
 - MongoDB database
 - Git
 
-## 🚀 Quick Start
 
-### 1. Clone and Install
-
-```bash
-git clone https://github.com/yourusername/todo-app.git
-cd todo-app
-npm install
-```
-
-### 2. Environment Setup
-
-Create a `.env` file in the root directory:
-
-```env
-DB_STRING=mongodb://localhost:27017/todoapp
-SESSION_SECRET=your-super-secret-session-key
-PORT=3000
-NODE_ENV=development
-```
-
-### 3. Run the Application
-
-```bash
-# Development mode with auto-restart
-npm run dev
-
-# Production mode
-npm start
-
-# Run tests
-npm test
-
-# Run linting
-npm run lint
-```
-
-### 4. Access the App
-
-Open your browser and navigate to `http://localhost:3000`
-
-## 🧪 Testing
-
-The project includes comprehensive tests:
-
-```bash
-# Run all tests
-npm test
-
-# Run tests with coverage
-npm run test:coverage
-
-# Run tests in watch mode
-npm run test:watch
-```
-
-## 🔒 Security Features
+## Security Features
 
 - **Input Validation** - All user inputs are validated and sanitized
 - **Session Security** - Secure session configuration with proper cookies
@@ -133,7 +78,7 @@ todo-app/
 └── 📄 CICD_SETUP.md         # Detailed CI/CD setup guide
 ```
 
-## 🚀 Deployment
+## Deployment
 
 ### Railway Deployment
 
@@ -152,7 +97,7 @@ npm run build
 npm start
 ```
 
-## 🔧 Configuration
+## Configuration
 
 ### Environment Variables
 
@@ -169,7 +114,7 @@ npm start
 2. Create a database named `todoapp`
 3. Update the `DB_STRING` in your `.env` file
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feature/amazing-feature`
@@ -187,7 +132,7 @@ npm start
 - Code must pass linting and security scans
 - Tests must pass with adequate coverage
 
-## 📝 API Endpoints
+## API Endpoints
 
 ### Authentication
 - `GET /` - Home page
@@ -204,7 +149,7 @@ npm start
 - `PUT /todos/markIncomplete` - Mark todo as incomplete
 - `DELETE /todos` - Delete a todo
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -222,11 +167,11 @@ npm start
 
 For more troubleshooting tips, see [CICD_SETUP.md](./CICD_SETUP.md#troubleshooting)
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🔗 Links
+## Links
 
 - [Live Demo (Production)](https://your-prod-app.railway.app)
 - [Live Demo (Development)](https://your-dev-app.railway.app)
@@ -235,4 +180,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Built with ❤️ and modern DevOps practices**
+**Built with ❤️ and modern practices**
